@@ -1,0 +1,167 @@
+/* ===============================
+   GLOBAL DARK THEME
+   =============================== */
+body {
+    background: #0b0c0d;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+}
+
+/* ===============================
+   GLASS CARD
+   =============================== */
+.glass {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 1rem;
+}
+
+/* ===============================
+   BUTTONS - COMMON STYLE
+   =============================== */
+.btn {
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Button Colors */
+.btn-blue {
+    background: #2563eb;
+}
+.btn-blue:hover {
+    background: #1e40af;
+}
+
+.btn-red {
+    background: #dc2626;
+}
+.btn-red:hover {
+    background: #b91c1c;
+}
+
+.btn-green {
+    background: #16a34a;
+}
+.btn-green:hover {
+    background: #15803d;
+}
+
+.btn-yellow {
+    background: #eab308;
+    color: black;
+}
+.btn-yellow:hover {
+    background: #ca8a04;
+}
+
+/* ===============================
+   INPUT FIELDS
+   =============================== */
+.input {
+    width: 100%;
+    border-radius: 6px;
+    background: #0f1114;
+    padding: 10px;
+    color: white;
+    border: 1px solid #2d2f32;
+}
+
+.input:focus {
+    outline: 2px solid #2563eb;
+}
+
+/* ===============================
+   TABLE STYLE
+   =============================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    color: #9ca3af;
+    font-weight: 600;
+}
+
+td, th {
+    padding: 10px;
+}
+
+tr {
+    border-bottom: 1px solid #2d2f32;
+}
+
+/* ===============================
+   SIDEBAR
+   =============================== */
+.sidebar {
+    width: 260px;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 20px;
+    height: 100vh;
+}
+
+/* Sidebar Buttons */
+.sidebar button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* ===============================
+   CARDS ALIGNMENT
+   =============================== */
+.card-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+/* Responsive Cards */
+@media (min-width: 768px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 1024px) {
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ===============================
+   ANIMATIONS
+   =============================== */
+.fade-in {
+    animation: fadein 0.5s ease-in-out;
+}
+
+@keyframes fadein {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===============================
+   ALERTS
+   =============================== */
+.alert {
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.alert-success {
+    background: rgba(34,197,94,0.2);
+    border-left: 4px solid #22c55e;
+}
+
+.alert-error {
+    background: rgba(239,68,68,0.2);
+    border-left: 4px solid #ef4444;
+}

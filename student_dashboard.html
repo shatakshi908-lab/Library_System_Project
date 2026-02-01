@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: #0b0b0c;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .sidebar {
+            width: 270px;
+        }
+    </style>
+
+    <script src="/static/student.js" defer></script>
+</head>
+
+<body class="text-white flex">
+
+    <!-- Sidebar -->
+    <div class="sidebar h-screen glass p-6 flex flex-col space-y-6">
+        <h2 class="text-2xl font-bold">🎓 Student</h2>
+
+        <button onclick="showSection('books')" class="w-full bg-blue-700 py-2 rounded">Search Books</button>
+        <button onclick="showSection('issued')" class="w-full bg-purple-700 py-2 rounded">Issued Books</button>
+        <button onclick="showSection('return')" class="w-full bg-green-700 py-2 rounded">Return Book</button>
+        <button onclick="showSection('reserve')" class="w-full bg-yellow-700 py-2 rounded">Reservations</button>
+
+        <a href="/" class="mt-auto text-red-400 hover:text-red-600">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-10 space-y-10">
+
+        <h1 class="text-4xl font-bold">📚 Student Dashboard</h1>
+
+        <!-- Search Books -->
+        <div id="books" class="hidden glass p-6 rounded-xl">
+            <h2 class="text-2xl mb-4">🔎 Search Book</h2>
+            <input id="searchInput" onkeyup="filterBooks()" type="text"
+                   placeholder="Search by name..."
+                   class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded">
+
+            <div id="bookList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6"></div>
+        </div>
+
+        <!-- Issued Books -->
+        <div id="issued" class="hidden glass p-6 rounded-xl">
+            <h2 class="text-2xl mb-4">📘 Your Issued Books</h2>
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="text-gray-400 border-b border-gray-700">
+                        <th class="p-2">Book</th>
+                        <th class="p-2">Issued</th>
+                        <th class="p-2">Due</th>
+                        <th class="p-2">Fine</th>
+                    </tr>
+                </thead>
+                <tbody id="issuedTable"></tbody>
+            </table>
+        </div>
+
+        <!-- Return Book -->
+        <div id="return" class="hidden glass p-6 rounded-xl">
+            <h2 class="text-2xl mb-4">🔄 Return Book</h2>
+
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="text-gray-400 border-b border-gray-700">
+                        <th class="p-2">Book</th>
+                        <th class="p-2">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="returnTable"></tbody>
+            </table>
+        </div>
+
+        <!-- Reservations -->
+        <div id="reserve" class="hidden glass p-6 rounded-xl">
+            <h2 class="text-2xl mb-4">⏳ Reservations</h2>
+
+            <ul id="reservationList" class="space-y-4"></ul>
+        </div>
+
+    </div>
+
+</body>
+</html>

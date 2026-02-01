@@ -1,0 +1,92 @@
+<!-- ========================================= -->
+<!-- BOOK CARD                                 -->
+<!-- ========================================= -->
+{% macro bookCard(id, title, author, copies) %}
+<div class="glass p-5 rounded-xl shadow-lg hover:shadow-2xl transition group">
+    
+    <h3 class="text-xl font-semibold group-hover:text-blue-400 transition">
+        {{ title }}
+    </h3>
+    <p class="text-gray-400 mt-1">By {{ author }}</p>
+
+    <p class="text-gray-300 mt-3">
+        <span class="font-semibold">{{ copies }}</span> copies available
+    </p>
+
+    <div class="flex space-x-3 mt-5">
+        <button onclick="editBook('{{ id }}')"
+                class="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 rounded">
+            Edit
+        </button>
+
+        <button onclick="deleteBook('{{ id }}')"
+                class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded">
+            Delete
+        </button>
+    </div>
+
+</div>
+{% endmacro %}
+
+
+<!-- ========================================= -->
+<!-- STUDENT ISSUE CARD                        -->
+<!-- ========================================= -->
+{% macro issueCard(id, title, issued, due, fine) %}
+<div class="glass p-5 rounded-xl shadow-lg">
+
+    <h3 class="text-xl font-semibold">{{ title }}</h3>
+
+    <p class="text-gray-300 mt-2">
+        Issued: <span class="font-semibold">{{ issued }}</span>
+    </p>
+
+    <p class="text-gray-300">
+        Due: <span class="font-semibold">{{ due }}</span>
+    </p>
+
+    <p class="mt-2 {{ 'text-red-400' if fine > 0 else 'text-green-400' }}">
+        Fine: {{ fine }} ₹
+    </p>
+
+    <button onclick="returnBook('{{ id }}')"
+            class="mt-4 w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">
+        Return
+    </button>
+</div>
+{% endmacro %}
+
+
+<!-- ========================================= -->
+<!-- RESERVATION CARD                           -->
+<!-- ========================================= -->
+{% macro reservationCard(student, book, status) %}
+<div class="glass p-5 rounded-xl shadow-lg">
+    <h3 class="text-xl font-semibold">{{ book }}</h3>
+    <p class="text-gray-300 mt-1">Requested by: {{ student }}</p>
+    
+    <p class="mt-2 font-semibold 
+        {{ 'text-yellow-400' if status == 'Pending' else 'text-green-400' }}">
+        Status: {{ status }}
+    </p>
+</div>
+{% endmacro %}
+
+
+<!-- ========================================= -->
+<!-- STAT CARD                                  -->
+<!-- ========================================= -->
+{% macro statCard(label, value, icon) %}
+<div class="glass p-6 rounded-xl flex items-center space-x-4 shadow-lg">
+
+    <div class="text-4xl">
+        {{ icon }}
+    </div>
+
+    <div>
+        <p class="text-gray-300">{{ label }}</p>
+        <p class="text-3xl font-bold">{{ value }}</p>
+    </div>
+
+</div>
+{% endmacro %}

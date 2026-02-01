@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Librarian Dashboard</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body { background: #0b0c0d; font-family: 'Inter', sans-serif; color: white; }
+        .glass {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+        .sidebar { width: 260px; }
+    </style>
+
+    <script src="/static/charts.js" defer></script>
+    <script src="/static/librarian.js" defer></script>
+
+</head>
+
+<body class="flex">
+
+    <!-- Sidebar -->
+    <div class="sidebar h-screen glass p-6 flex flex-col space-y-6">
+        <h1 class="text-2xl font-bold">📘 Librarian</h1>
+
+        <button onclick="showSection('books')" class="bg-blue-700 py-2 rounded">Manage Books</button>
+        <button onclick="showSection('reservations')" class="bg-yellow-700 py-2 rounded">Reservations</button>
+        <button onclick="showSection('defaulters')" class="bg-red-700 py-2 rounded">Defaulters</button>
+        <button onclick="showSection('analytics')" class="bg-purple-700 py-2 rounded">Analytics</button>
+
+        <a href="/" class="mt-auto text-red-400 hover:text-red-600">Logout</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="flex-1 p-10 space-y-10">
+
+        <h1 class="text-4xl font-bold">📚 Librarian Dashboard</h1>
+
+        <!-- BOOK MANAGEMENT -->
+        <div id="books" class="hidden glass p-6 rounded-xl">
+
+            <h2 class="text-2xl mb-4">📘 Manage Books</h2>
+
+            <!-- Add Book Form -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input id="title" class="p-2 bg-gray-900 rounded" placeholder="Book Title">
+                <input id="author" class="p-2 bg-gray-900 rounded" placeholder="Author">
+                <input id="copies" type="number" class="p-2 bg-gray-900 rounded" placeholder="Copies">
+                <input id="section" class="p-2 bg-gray-900 rounded" placeholder="Section (A1, B3…)">
+                <input id="shelf" class="p-2 bg-gray-900 rounded" placeholder="Shelf (S1, S4…)">
+
+                <button onclick="addBook()" 
+                        class="col-span-1 md:col-span-2 bg-green-700 py-2 rounded hover:bg-green-800">
+                    Add Book
+                </button>
+            </div>
+
+            <h3 class="text-xl mt-6 mb-3">📚 All Books</h3>
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="text-gray-400 border-b border-gray-700">
+                        <th class="p-2">Title</th>
+                        <th class="p-2">Author</th>
+                        <th class="p-2">Copies</th>
+                        <th class="p-2">Section</th>
+                        <th class="p-2">Shelf</th>
+                        <th class="p-2">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="bookTable"></tbody>
+            </table>
+
+        </div>
+
+        <!-- RESERVATIONS -->
+        <div id="reservations" class="hidden glass p-6 rounded-xl">
+            <h2 class="text-2xl mb-4">⏳ All Reservations</h2>
+
+            <ul id="reservationList" class="space-y-4"></ul>
+        </div>
+
+        <!-- DEFAULTERS -->
+        <div id="defaulters" class="hidden glass p-6 rounded-xl">
+            <h2 class="text-2xl mb-4">⚠️ Defaulters</h2>
+
+            <ul id="defaultersList" class="space-y-4"></ul>
+        </div>
+
+        <!-- ANALYTICS -->
+        <div id="analytics" class="hidden glass p-6 rounded-xl">
+            <h2 class="text-2xl mb-4">📊 Analytics</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <div>
+                    <canvas id="popularBooksChart"></canvas>
+                </div>
+
+                <div>
+                    <canvas id="weeklyIssuedChart"></canvas>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
